@@ -1,0 +1,7 @@
+.idea
+dist
+coverage
+coverage.lcov
+.history
+merged*
+deno.lock

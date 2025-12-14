@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Hungry Tree Friends</title>
+    <link rel="stylesheet" href="assets/fonts/fonts.css"/>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #111;
+            overflow: hidden;
+        }
+
+        #game-canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            background: #000;
+        }
+
+        #ui-canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            pointer-events: none;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+<canvas id="game-canvas"></canvas>
+<canvas id="ui-canvas"></canvas>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
