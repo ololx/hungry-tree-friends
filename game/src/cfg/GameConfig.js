@@ -13,7 +13,7 @@ export const Events = {
 };
 
 export const RhythmConstants = {
-    HIT_WINDOW: 0.08,
+    HIT_WINDOW: 0.06,
     NOTE_SPAWN_LEAD: 0.8,
     NOTE_DESPAWN_AFTER: 0.4,
     COOKIE_PULSE_DURATION: 0.18,
