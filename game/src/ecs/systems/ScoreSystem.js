@@ -52,9 +52,17 @@ export class ScoreSystem extends Shiit.AbstractSystem {
     processAccuracy(score, percent) {
         const prevAccuracy = score.accuracy;
         const state = this._resolveAccuracyState(percent, prevAccuracy);
-        Shiit.setAnimation(this.world, this.progressId, state.anim);
-        this._playAccuracyTransitionSound(prevAccuracy, state.value, percent);
         score.accuracy = state.value;
+
+        Shiit.setAnimation(this.world, this.progressId, state.anim);
+
+        const gs = this.world.getComponent(this.gameStateEntityId, "GameState");
+        if (!gs || !gs.isRunning) {
+            return;
+        }
+
+        this._playAccuracyTransitionSound(prevAccuracy, state.value, percent);
+
     }
 
     onResetForLevel({totalNotes}) {
