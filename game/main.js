@@ -152,7 +152,7 @@ async function main() {
     const animationSystem = new Shiit.AnimationSystem();
     const renderSystem = new Shiit.RenderSystem(resources, render);
 
-    const scoreSystem = new ScoreSystem(world, scoreEntityId, progressId, events, soundRefs);
+    const scoreSystem = new ScoreSystem(world, scoreEntityId, gameStateEntityId, progressId, events, soundRefs);
     const rhythmSystem = new RhythmSystem(
         world,
         resources,

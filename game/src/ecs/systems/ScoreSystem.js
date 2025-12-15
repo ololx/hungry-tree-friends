@@ -3,10 +3,11 @@ import {Events, ScoreConstants} from "../../cfg/GameConfig.js";
 import {withComponent} from "../ComponentUtils.js";
 
 export class ScoreSystem extends Shiit.AbstractSystem {
-    constructor(world, scoreEntityId, progressId, events, soundRefs) {
+    constructor(world, scoreEntityId, gameStateEntityId, progressId, events, soundRefs) {
         super("ScoreSystem", 300);
         this.world = world;
         this.scoreEntityId = scoreEntityId;
+        this.gameStateEntityId = gameStateEntityId;
         this.progressId = progressId;
         this.events = events;
         this.soundRefs = soundRefs;
