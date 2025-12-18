@@ -216,8 +216,6 @@ export class RhythmSystem extends Shiit.AbstractSystem {
             pulseScale = 1 + pulse * pulseAmp;
         }
 
-        const songTime = this.getSongTime();
-
         for (const runtimeNote of level.notes) {
             const note = runtimeNote.config;
 
@@ -228,7 +226,7 @@ export class RhythmSystem extends Shiit.AbstractSystem {
 
             const spawnTime = note.hitTime - this.NOTE_SPAWN_LEAD;
             const effectiveSpawnTime = Math.max(spawnTime, intro);
-            const now = songTime;
+            const now = this.getSongTime();
 
             if (!runtimeNote.spawned && now >= effectiveSpawnTime) {
                 this.spawnNote(runtimeNote);
@@ -321,7 +319,7 @@ export class RhythmSystem extends Shiit.AbstractSystem {
                     this.playMiss();
                 }
 
-                if (this.levelTime > note.hitTime + this.NOTE_DESPAWN_AFTER) {
+                if (now > note.hitTime + this.NOTE_DESPAWN_AFTER) {
                     this.world.destroyEntity(runtimeNote.entityId);
                     runtimeNote.entityId = null;
 
@@ -492,8 +490,11 @@ export class RhythmSystem extends Shiit.AbstractSystem {
 
     update(world, tick) {
         const dt = tick.deltaTime || 0;
+
         const gs = this.gameState;
-        if (!gs) return;
+        if (!gs) {
+            return;
+        }
 
         if (gs.phase !== "playing" || !gs.isRunning) {
             this.updateCookiePulse(world, dt);
@@ -509,7 +510,9 @@ export class RhythmSystem extends Shiit.AbstractSystem {
         this.updateCookiePulse(world, dt);
 
         const level = this.currentLevel;
-        if (this.levelTime >= level.config.duration) {
+
+        const now = this.getSongTime();
+        if (now >= level.config.duration) {
             this.finishCurrentLevel();
         }
 
